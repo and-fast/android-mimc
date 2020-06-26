@@ -83,3 +83,19 @@ lint/generated/
 lint/outputs/
 lint/tmp/
 # lint/reports/
+
+*.iml
+.gradle
+.idea
+.settings
+/local.properties
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+.project
+/app/.classpath
+/app/build
+/app/.settings
+/app/.externNativeBuild
