@@ -10,7 +10,7 @@ import android.os.Binder;
 import android.os.Build;
 import android.os.IBinder;
 import android.support.v4.app.NotificationCompat;
-import com.xiaomi.mimc.R;
+import and.fast.xiaomi.mimc.R;
 import and.fast.xiaomi.mimc.ui.VoiceCallActivity;
 
 public class CallService extends Service {

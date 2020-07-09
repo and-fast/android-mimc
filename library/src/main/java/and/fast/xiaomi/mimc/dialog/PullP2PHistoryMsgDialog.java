@@ -9,7 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
 import com.xiaomi.mimc.common.MIMCConstant;
-import com.xiaomi.mimc.R;
+import and.fast.xiaomi.mimc.R;
 import and.fast.xiaomi.mimc.common.NetWorkUtils;
 import and.fast.xiaomi.mimc.common.TimeUtils;
 import and.fast.xiaomi.mimc.common.UserManager;

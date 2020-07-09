@@ -3,7 +3,7 @@ package and.fast.xiaomi.mimc.common;
 import android.content.Context;
 import android.util.Base64;
 import com.alibaba.fastjson.JSON;
-import com.xiaomi.mimc.R;
+import and.fast.xiaomi.mimc.R;
 import and.fast.xiaomi.mimc.bean.Msg;
 import org.json.JSONArray;
 import org.json.JSONException;

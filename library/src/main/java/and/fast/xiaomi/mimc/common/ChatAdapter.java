@@ -6,7 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import com.xiaomi.mimc.R;
+import and.fast.xiaomi.mimc.R;
 import and.fast.xiaomi.mimc.bean.ChatMsg;
 
 import java.util.List;

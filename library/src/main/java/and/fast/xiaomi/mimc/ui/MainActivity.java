@@ -11,7 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.xiaomi.mimc.*;
 import com.xiaomi.mimc.common.MIMCConstant;
-import com.xiaomi.mimc.R;
+import and.fast.xiaomi.mimc.R;
 import and.fast.xiaomi.mimc.bean.ChatMsg;
 import and.fast.xiaomi.mimc.common.ChatAdapter;
 import and.fast.xiaomi.mimc.common.NetWorkUtils;

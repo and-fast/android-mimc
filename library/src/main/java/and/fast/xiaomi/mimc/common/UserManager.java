@@ -17,7 +17,7 @@ import com.xiaomi.mimc.data.DataPriority;
 import com.xiaomi.mimc.data.LaunchedResponse;
 import com.xiaomi.mimc.data.RtsChannelType;
 import com.xiaomi.mimc.data.RtsDataType;
-import and.fast.xiaomi.mimc.MIMCManage;
+import and.fast.xiaomi.mimc.MIMessageClient;
 import and.fast.xiaomi.mimc.bean.ChatMsg;
 import and.fast.xiaomi.mimc.bean.Msg;
 import and.fast.xiaomi.mimc.listener.OnCallStateListener;
@@ -193,7 +193,7 @@ public class UserManager {
 
         // online
         // cachePath必须传入，用于缓存文件读写，否则返回null
-        mimcUser = MIMCUser.newInstance(appId, appAccount, MIMCManage.sApplication.getExternalCacheDir().getPath(), MIMCManage.sApplication.getCacheDir().getPath());
+        mimcUser = MIMCUser.newInstance(appId, appAccount, MIMessageClient.sApplication.getExternalCacheDir().getPath(), MIMessageClient.sApplication.getCacheDir().getPath());
 
         // staging
 //        mimcUser = MIMCUser.newInstance(appId, appAccount, MIMCApplication.getContext().getExternalCacheDir().getPath(), MIMCApplication.getContext().getCacheDir().getPath(), "http://10.38.162.117:6000/gslb/", "http://10.38.162.149/");
@@ -242,7 +242,7 @@ public class UserManager {
                 Log.i(TAG, String.format("新会话请求来了 callId:%d", callId));
                 String callType = new String(appContent);
                 if (callType.equalsIgnoreCase("AUDIO")) {
-                    VoiceCallActivity.actionStartActivity(MIMCManage.sApplication, fromAccount, callId);
+                    VoiceCallActivity.actionStartActivity(MIMessageClient.sApplication, fromAccount, callId);
                 } else if (callType.equalsIgnoreCase("VIDEO")) {
 
                 }

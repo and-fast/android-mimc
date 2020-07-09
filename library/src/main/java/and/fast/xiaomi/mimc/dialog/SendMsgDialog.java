@@ -8,7 +8,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import com.xiaomi.mimc.MIMCUser;
-import com.xiaomi.mimc.R;
+import and.fast.xiaomi.mimc.R;
 import and.fast.xiaomi.mimc.common.Constant;
 import and.fast.xiaomi.mimc.common.UserManager;
 

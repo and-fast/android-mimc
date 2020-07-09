@@ -24,7 +24,7 @@ import android.widget.Toast;
 import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.xiaomi.mimc.data.RtsDataType;
-import com.xiaomi.mimc.R;
+import and.fast.xiaomi.mimc.R;
 import and.fast.xiaomi.mimc.av.AudioPlayer;
 import and.fast.xiaomi.mimc.av.AudioRecorder;
 import and.fast.xiaomi.mimc.av.FFmpegAudioDecoder;
@@ -211,26 +211,26 @@ public class VoiceCallActivity extends Activity implements View.OnClickListener,
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
     public void onClick(View v) {
-        Message msg;
-        switch (v.getId()) {
-            case R.id.btn_hang_up_call:
-                msg = Message.obtain();
-                msg.what = MSG_CALL_HANGUP;
-                handler.sendMessage(msg);
-                break;
-            case R.id.btn_coming_reject_call:
-                msg = Message.obtain();
-                msg.what = MSG_CALL_REJECT;
-                handler.sendMessage(msg);
-                break;
-            case R.id.btn_answer_call:
-                msg = Message.obtain();
-                msg.what = MSG_CALL_ANSWER;
-                handler.sendMessage(msg);
-                btnHangUpCall.setVisibility(View.VISIBLE);
-                rlComingCallContainer.setVisibility(View.INVISIBLE);
-                break;
-        }
+//        Message msg;
+//        switch (v.getId()) {
+//            case R.id.btn_hang_up_call:
+//                msg = Message.obtain();
+//                msg.what = MSG_CALL_HANGUP;
+//                handler.sendMessage(msg);
+//                break;
+//            case R.id.btn_coming_reject_call:
+//                msg = Message.obtain();
+//                msg.what = MSG_CALL_REJECT;
+//                handler.sendMessage(msg);
+//                break;
+//            case R.id.btn_answer_call:
+//                msg = Message.obtain();
+//                msg.what = MSG_CALL_ANSWER;
+//                handler.sendMessage(msg);
+//                btnHangUpCall.setVisibility(View.VISIBLE);
+//                rlComingCallContainer.setVisibility(View.INVISIBLE);
+//                break;
+//        }
     }
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)

@@ -4,7 +4,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.widget.TextView;
-import com.xiaomi.mimc.R;
+import and.fast.xiaomi.mimc.R;
 
 public class GroupInfoDialog extends Dialog {
     private TextView tvContent;
