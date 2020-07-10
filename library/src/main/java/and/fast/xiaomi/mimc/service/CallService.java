@@ -39,7 +39,7 @@ public class CallService extends Service {
         builder.setContentTitle(callBinder.username)
                 .setContentText("语音通话中...")
                 .setWhen(System.currentTimeMillis())
-                .setSmallIcon(R.mipmap.ic_launcher)
+//                .setSmallIcon(R.mipmap.ic_launcher)
                 .setContentIntent(pi);
         startForeground(5566, builder.build());
         return START_NOT_STICKY;
