@@ -17,7 +17,7 @@ import com.xiaomi.mimc.data.DataPriority;
 import com.xiaomi.mimc.data.LaunchedResponse;
 import com.xiaomi.mimc.data.RtsChannelType;
 import com.xiaomi.mimc.data.RtsDataType;
-import and.fast.xiaomi.mimc.MIMessageClient;
+
 import and.fast.xiaomi.mimc.bean.ChatMsg;
 import and.fast.xiaomi.mimc.bean.Msg;
 import and.fast.xiaomi.mimc.listener.OnCallStateListener;
@@ -29,18 +29,13 @@ import java.io.IOException;
 import java.util.List;
 
 public class UserManager {
-    /**
-     * appId/appKey/appSecret，小米开放平台(https://dev.mi.com/console/appservice/mimc.html)申请
-     * 其中appKey和appSecret不可存储于APP端，应存储于APP自己的服务器，以防泄漏。
-     *
-     * 此处appId/appKey/appSec为小米MimcDemo所有，会在一定时间后失效，建议开发者自行申请
-     **/
+
     // online
-    private long appId = 2882303761517669588L;
-    private String appKey = "5111766983588";
-    private String appSecret = "b0L3IOz/9Ob809v8H2FbVg==";
-    private String regionKey = "REGION_CN";
-    private String domain = "https://mimc.chat.xiaomi.net/";
+    //private long appId = 2882303761517669588L;
+    //private String appKey = "5111766983588";
+    //private String appSecret = "b0L3IOz/9Ob809v8H2FbVg==";
+    //private String regionKey = "REGION_CN";
+    //private String domain = "https://mimc.chat.xiaomi.net/";
 
     // staging
 //    private long appId = 2882303761517479657L;
@@ -193,7 +188,7 @@ public class UserManager {
 
         // online
         // cachePath必须传入，用于缓存文件读写，否则返回null
-        mimcUser = MIMCUser.newInstance(appId, appAccount, MIMessageClient.sApplication.getExternalCacheDir().getPath(), MIMessageClient.sApplication.getCacheDir().getPath());
+        mimcUser = MIMCUser.newInstance(MIMessageClient.sAppId, appAccount, MIMessageClient.sApplication.getExternalCacheDir().getPath(), MIMessageClient.sApplication.getCacheDir().getPath());
 
         // staging
 //        mimcUser = MIMCUser.newInstance(appId, appAccount, MIMCApplication.getContext().getExternalCacheDir().getPath(), MIMCApplication.getContext().getCacheDir().getPath(), "http://10.38.162.117:6000/gslb/", "http://10.38.162.149/");
@@ -514,10 +509,10 @@ public class UserManager {
              * 强烈建议，APP从自己服务器获取data对应的JSON串，APP自己的服务器再从小米Token服务器获取，以防appKey和appSecret泄漏
              */
 
-            url = domain + "api/account/token";
+            url = MIMessageClient.sDomain + "api/account/token";
             String appAccount = getAccount();
-            String json = "{\"appId\":" + appId + ",\"appKey\":\"" + appKey + "\",\"appSecret\":\"" +
-                appSecret + "\",\"appAccount\":\"" + appAccount + "\",\"regionKey\":\"" + regionKey + "\"}";
+            String json = "{\"appId\":" + MIMessageClient.sAppId + ",\"appKey\":\"" + MIMessageClient.sAppKey + "\",\"appSecret\":\"" +
+                    MIMessageClient.sAppSecret + "\",\"appAccount\":\"" + appAccount + "\",\"regionKey\":\"" + MIMessageClient.sRegionKey + "\"}";
             MediaType JSON = MediaType.parse("application/json;charset=utf-8");
             OkHttpClient client = new OkHttpClient();
             Request request = new Request
@@ -571,7 +566,7 @@ public class UserManager {
      * @param users 群成员，多个成员之间用英文逗号(,)分隔
      */
     public void createGroup(final String groupName, final String users) {
-        url = domain + "api/topic/" + appId;
+        url = MIMessageClient.sDomain + "api/topic/" + MIMessageClient.sAppId;
         String json = "{\"topicName\":\"" + groupName + "\", \"accounts\":\"" + users + "\"}";
         MediaType JSON = MediaType.parse("application/json");
         OkHttpClient client = new OkHttpClient();
@@ -606,7 +601,7 @@ public class UserManager {
      * @param groupId 群ID
      */
     public void queryGroupInfo(final String groupId) {
-        url = domain + "api/topic/" + appId + "/" + groupId;
+        url = MIMessageClient.sDomain + "api/topic/" + MIMessageClient.sAppId + "/" + groupId;
         OkHttpClient client = new OkHttpClient();
         Request request = new Request
                 .Builder()
@@ -638,7 +633,7 @@ public class UserManager {
      * 查询所属群信息
      */
     public void queryGroupsOfAccount() {
-        url = domain + "api/topic/" + appId + "/account";
+        url = MIMessageClient.sDomain + "api/topic/" + MIMessageClient.sAppId + "/account";
         OkHttpClient client = new OkHttpClient();
         Request request = new Request
                 .Builder()
@@ -672,7 +667,7 @@ public class UserManager {
      * @param users 加入成员，多个成员之间用英文逗号(,)分隔
      */
     public void joinGroup(final String groupId, final String users) {
-        url = domain + "api/topic/" + appId + "/" + groupId + "/accounts";
+        url = MIMessageClient.sDomain + "api/topic/" + MIMessageClient.sAppId + "/" + groupId + "/accounts";
         String json = "{\"accounts\":\"" + users + "\"}";
         MediaType JSON = MediaType.parse("application/json");
         OkHttpClient client = new OkHttpClient();
@@ -707,7 +702,7 @@ public class UserManager {
      * @param groupId 群ID
      */
     public void quitGroup(final String groupId) {
-        url = domain + "api/topic/" + appId + "/" + groupId + "/account";
+        url = MIMessageClient.sDomain + "api/topic/" + MIMessageClient.sAppId + "/" + groupId + "/account";
         OkHttpClient client = new OkHttpClient();
         Request request = new Request
                 .Builder()
@@ -741,7 +736,7 @@ public class UserManager {
      * @param users 群成员，多个成员之间用英文逗号(,)分隔
      */
     public void kickGroup(final String groupId, final String users) {
-        url = domain + "api/topic/" + appId + "/" + groupId + "/accounts?accounts=" + users;
+        url = MIMessageClient.sDomain + "api/topic/" + MIMessageClient.sAppId + "/" + groupId + "/accounts?accounts=" + users;
         OkHttpClient client = new OkHttpClient();
         Request request = new Request
                 .Builder()
@@ -777,7 +772,7 @@ public class UserManager {
      * @param newGroupBulletin 群公告
      */
     public void updateGroup(final String groupId, final String newOwnerAccount,  final String newGroupName, final String newGroupBulletin) {
-        url = domain + "api/topic/" + appId + "/" + groupId;
+        url = MIMessageClient.sDomain + "api/topic/" + MIMessageClient.sAppId + "/" + groupId;
         // 注意：不指定的信息则不更新（键值对一起不指定）
         String json = "{";
         if (!newOwnerAccount.isEmpty()) {
@@ -821,7 +816,7 @@ public class UserManager {
      * @param groupId 群ID
      */
     public void dismissGroup(final String groupId) {
-        url = domain + "api/topic/" + appId + "/" + groupId;
+        url = MIMessageClient.sDomain + "api/topic/" + MIMessageClient.sAppId + "/" + groupId;
         OkHttpClient client = new OkHttpClient();
         Request request = new Request
                 .Builder()
@@ -858,7 +853,7 @@ public class UserManager {
      * 注意：utcFromTime和utcToTime的时间间隔不能超过24小时，查询状态为[utcFromTime,utcToTime)，单位毫秒，UTC时间
      */
     public void pullP2PHistory(String toAccount, String fromAccount, String utcFromTime, String utcToTime) {
-        url = domain + "api/msg/p2p/query/";
+        url = MIMessageClient.sDomain + "api/msg/p2p/query/";
         String json = "{\"toAccount\":\"" + toAccount + "\", \"fromAccount\":\""
                 + fromAccount + "\", \"utcFromTime\":\"" + utcFromTime + "\", \"utcToTime\":\"" +
                 utcToTime + "\"}";
@@ -900,7 +895,7 @@ public class UserManager {
      * 注意：utcFromTime和utcToTime的时间间隔不能超过24小时，查询状态为[utcFromTime,utcToTime)，单位毫秒，UTC时间
      */
     public void pullP2THistory(String account, String topicId, String utcFromTime, String utcToTime) {
-        url = domain + "api/msg/p2t/query/";
+        url = MIMessageClient.sDomain + "api/msg/p2t/query/";
         String json = "{\"account\":\"" + account + "\", \"topicId\":\""
                 + topicId + "\", \"utcFromTime\":\"" + utcFromTime + "\", \"utcToTime\":\"" + utcToTime + "\"}";
         MediaType JSON = MediaType.parse("application/json;charset=UTF-8");
@@ -937,7 +932,7 @@ public class UserManager {
      * @param topicId 群ID
      */
     public void queryUnlimitedGroupMembers(long topicId) {
-        url = domain + "/api/uctopic/userlist";
+        url = MIMessageClient.sDomain + "/api/uctopic/userlist";
         OkHttpClient client = new OkHttpClient();
         final Request request = new Request
             .Builder()
@@ -973,7 +968,7 @@ public class UserManager {
      * 查询无限大群
      */
     public void queryUnlimitedGroups() {
-        String url = domain + "/api/uctopic/topics";
+        String url = MIMessageClient.sDomain + "/api/uctopic/topics";
         OkHttpClient client = new OkHttpClient();
         final Request request = new Request
             .Builder()
@@ -1009,7 +1004,7 @@ public class UserManager {
      * @param topicId
      */
     public void queryUnlimitedGroupOnlineUsers(long topicId) {
-        url = domain + "/api/uctopic/onlineinfo";
+        url = MIMessageClient.sDomain + "/api/uctopic/onlineinfo";
         OkHttpClient client = new OkHttpClient();
         final Request request = new Request
             .Builder()
